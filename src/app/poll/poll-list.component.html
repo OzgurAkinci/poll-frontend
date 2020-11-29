@@ -1,0 +1,35 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Polls
+      <button class="btn btn-info float-right" routerLink="/poll-edit/new">New Poll</button>
+    </h4>
+    <div class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Poll Title</th>
+            <th scope="col" width="30"></th>
+            <th scope="col" width="30"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let poll of polls; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ poll.pollTitle }}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary" routerLink="/poll-edit/{{poll.id}}">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-info">Join</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+
+

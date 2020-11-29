@@ -1,0 +1,53 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Question
+      <div class="btn-toolbar float-right">
+        <button class="btn btn-info" (click)="goBack()">Back</button> &nbsp;
+        <button class="btn btn-info" *ngIf="question.id" routerLink="/option-edit/new">New Option</button>
+      </div>
+    </h4>
+    <div ngForm class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <form>
+          <div class="form-group">
+            <label for="questionTitle">Question Title</label>
+            <input type="email" class="form-control" id="questionTitle" name="pollTitle" [(ngModel)]="question.questionTitle" placeholder="Poll Title">
+          </div>
+          <div class="form-group">
+            <label for="questionType">Type</label>
+            <select [(ngModel)]="question.questionType" class="form-control" id="questionType" name="questionType">
+              <option value="0">Single choice</option>
+              <option value="1">Multiple choice</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+        </form>
+
+        <hr/>
+
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Option Title</th>
+            <th scope="col" width="30"></th>
+            <th scope="col" width="30"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let option of question.options; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ option.optionTitle }}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary" routerLink="/option-edit/{{option.id}}">Edit</button>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-info">View</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

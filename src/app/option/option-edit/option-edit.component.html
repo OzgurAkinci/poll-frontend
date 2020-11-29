@@ -1,0 +1,16 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Option
+      <button class="btn btn-info float-right" (click)="goBack()">Back</button>
+    </h4>
+  <div ngForm class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <form>
+          <div class="form-group">
+            <label for="optionTitle">Option Title</label>
+            <input type="email" class="form-control" id="optionTitle" name="optionTitle" [(ngModel)]="option.optionTitle" placeholder="Poll Title">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+        </form>
+    </div>
+</div>

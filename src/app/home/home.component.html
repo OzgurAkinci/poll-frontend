@@ -1,0 +1,11 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">Home</h4>
+    <div class="card-body">
+          <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+          <ul *ngIf="user">
+              <li>{{user?.name}} {{user?.surname}}, Roles: {{user?.roles | json}}</li>
+          </ul>
+    </div>
+</div>
+
+<app-poll-list></app-poll-list>

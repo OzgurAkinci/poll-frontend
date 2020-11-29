@@ -1,0 +1,46 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Poll
+      <div class="btn-toolbar float-right">
+        <button class="btn btn-info" (click)="goBack()">Back</button> &nbsp;
+        <button class="btn btn-info" *ngIf="poll.id" routerLink="/question-edit/new">New Question</button>
+      </div>
+    </h4>
+    <div ngForm class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Poll Title</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="pollTitle" aria-describedby="emailHelp" [(ngModel)]="poll.pollTitle" placeholder="Poll Title">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+        </form>
+
+        <hr/>
+
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Question Title</th>
+            <th scope="col" width="30"></th>
+            <th scope="col" width="30"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let question of poll.questions; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ question.questionTitle }}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary" routerLink="/question-edit/{{question.id}}">Edit</button>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-info">View</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

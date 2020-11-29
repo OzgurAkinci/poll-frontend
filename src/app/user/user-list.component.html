@@ -1,0 +1,28 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">Users</h4>
+    <div class="card-body">
+      <p>This page can be accessed <u>only by administrators</u>.</p>
+      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Username</th>
+          <th scope="col">Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ user.name }}</td>
+          <td>{{ user.surname }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.roles | json }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+</div>
