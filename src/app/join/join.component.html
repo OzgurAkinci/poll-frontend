@@ -8,20 +8,19 @@
     </h4>
   <div ngForm class="card-body">
         <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <div *ngFor="let question of poll.questions; index as i" class="row">
+        <div *ngFor="let joinResultQuestion of joinResultQuestions; index as i" class="row">
           <div class="col-md-12">
-              <p>{{(i+1) + '.' + question.questionTitle}}</p>
+              <p>{{(i+1) + '.' + joinResultQuestion.questionTitle}}</p>
           </div>
           <div class="col-md-12">
-<!--
-            <div *ngFor='let item of question.options;let i = index'>
-              <input type="radio" (change)='radioChecked(item.id,i)' >
-              <input type="text" value='{{item.optionTitle}}'/>
-              <button type="button">save</button>
-            </div>
--->
 
-           <div class="form-check">
+            <div *ngFor='let item of joinResultQuestion.options;let i = index'>
+              <input type="{{joinResultQuestion.questionType === 0 ? 'radio' : 'checkbox'}}" [checked]="item.selected" (change)='radioChecked(item.optionId,i)' >
+              {{item.optionTitle}}
+            </div>
+
+
+           <!--<div class="form-check">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="optradio">Option 1
               </label>
@@ -36,7 +35,7 @@
                 <input type="radio" class="form-check-input" name="optradio">Option 3
               </label>
             </div>
-          </div>
+          </div>-->
           <div class="hr-sect">good luck</div>
         </div>
   </div>

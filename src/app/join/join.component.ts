@@ -6,9 +6,9 @@ import {ToastrService} from 'ngx-toastr';
 import {OptionService} from '../_services/option.service';
 import {QuestionService} from '../_services/question.service';
 import {Location} from '@angular/common';
-import {Poll} from '../_models/poll';
 import {PollService} from '../_services/poll.service';
-import {TempQuestion} from '@app/_models/temp_question';
+import {JoinResultQuestion} from '@app/_models/join-result-question';
+import {JoinService} from '@app/_services/join.service';
 
 @Component({
   selector: 'app-join',
@@ -18,11 +18,11 @@ import {TempQuestion} from '@app/_models/temp_question';
 export class JoinComponent implements OnInit {
     loading = false;
     sub: Subscription;
-    poll: Poll;
-    tempQuestions: TempQuestion[] = [];
+    joinResultQuestions: JoinResultQuestion[] = [];
 
     constructor(private route: ActivatedRoute, private optionService: OptionService, private questionService: QuestionService,
-                private toastr: ToastrService, private pollService: PollService, private location: Location) { }
+                private toastr: ToastrService, private joinService: JoinService, private pollService: PollService,
+                private location: Location) { }
 
     ngOnInit(): any {
       this.sub = this.route.params.subscribe(params => {
@@ -36,8 +36,8 @@ export class JoinComponent implements OnInit {
     }
 
     loadData(id: number): any {
-      this.pollService.get(id).subscribe(data => {
-        this.poll = data;
+      this.joinService.getByPollId(id).subscribe(data => {
+        this.joinResultQuestions = data;
       });
     }
 
@@ -47,8 +47,8 @@ export class JoinComponent implements OnInit {
     }
 
     radioChecked(id, i): any{
-     /* this.poll.questions.forEach(item => {
-        if (item.id !== id){
+      /*this.joinResultQuestions.forEach(item => {
+        if (item.questionId !== id){
           item.selected = false;
         }else{
           item.selected = true;
