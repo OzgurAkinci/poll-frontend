@@ -13,7 +13,15 @@
               <p>{{(i+1) + '.' + question.questionTitle}}</p>
           </div>
           <div class="col-md-12">
-            <div class="form-check">
+<!--
+            <div *ngFor='let item of question.options;let i = index'>
+              <input type="radio" (change)='radioChecked(item.id,i)' >
+              <input type="text" value='{{item.optionTitle}}'/>
+              <button type="button">save</button>
+            </div>
+-->
+
+           <div class="form-check">
               <label class="form-check-label">
                 <input type="radio" class="form-check-input" name="optradio">Option 1
               </label>
