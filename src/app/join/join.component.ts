@@ -36,8 +36,13 @@ export class JoinComponent implements OnInit {
     }
 
     loadData(id: number): any {
+      this.loading = true;
       this.joinService.getByPollId(id).subscribe(data => {
         this.joinResultQuestions = data;
+        this.loading = false;
+      }, e => {
+        this.loading = false;
+        this.toastr.error('Error: ' + JSON.stringify(e.error));
       });
     }
 
@@ -52,10 +57,13 @@ export class JoinComponent implements OnInit {
     }
 
     save(): void {
+        this.loading = true;
         this.joinService.save(this.joinResultQuestions).subscribe(data => {
+          this.loading = false;
           this.joinResultQuestions = data;
           this.toastr.success('Successfully Saved');
         }, e => {
+          this.loading = false;
           this.toastr.error('Error: ' + JSON.stringify(e.error));
         });
     }
