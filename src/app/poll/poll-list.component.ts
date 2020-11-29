@@ -15,10 +15,20 @@ export class PollListComponent implements OnInit {
     constructor(private pollService: PollService) { }
 
     ngOnInit(): any {
-        this.loading = true;
-        this.pollService.getAll().pipe(first()).subscribe(polls => {
-            this.loading = false;
-            this.polls = polls;
-        });
+        this.loadData();
+    }
+
+    loadData(): any {
+      this.loading = true;
+      this.pollService.getAll().pipe(first()).subscribe(polls => {
+        this.loading = false;
+        this.polls = polls;
+      });
+    }
+
+    delete(id): any {
+      this.pollService.delete(id).subscribe(data => {
+        this.loadData();
+      });
     }
 }

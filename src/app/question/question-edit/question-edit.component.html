@@ -3,7 +3,7 @@
       Question
       <div class="btn-toolbar float-right">
         <button class="btn btn-info" (click)="goBack()">Back</button> &nbsp;
-        <button class="btn btn-info" *ngIf="question.id" routerLink="/option-edit/new">New Option</button>
+        <button class="btn btn-info" *ngIf="question.id" routerLink="/option-edit/{{question.id}}/new">New Option</button>
       </div>
     </h4>
     <div ngForm class="card-body">
@@ -11,7 +11,7 @@
         <form>
           <div class="form-group">
             <label for="questionTitle">Question Title</label>
-            <input type="email" class="form-control" id="questionTitle" name="pollTitle" [(ngModel)]="question.questionTitle" placeholder="Poll Title">
+            <input type="email" class="form-control" id="questionTitle" name="questionTitle" [(ngModel)]="question.questionTitle" placeholder="Question Title">
           </div>
           <div class="form-group">
             <label for="questionType">Type</label>
@@ -40,12 +40,8 @@
             <td>
               {{ option.optionTitle }}
             </td>
-            <td>
-              <button class="btn btn-sm btn-primary" routerLink="/option-edit/{{option.id}}">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-info">View</button>
-            </td>
+            <td><button class="btn btn-sm btn-primary" routerLink="/option-edit/{{question.id}}/{{option.id}}">Edit</button></td>
+            <td><button class="btn btn-sm btn-danger" (click)="delete(option.id)">Delete</button></td>
           </tr>
           </tbody>
         </table>

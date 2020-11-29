@@ -6,6 +6,8 @@ import {ToastrService} from 'ngx-toastr';
 import {Question} from '../../_models/question';
 import {QuestionService} from '@app/_services/question.service';
 import {Location} from '@angular/common';
+import {PollService} from '@app/_services/poll.service';
+import {OptionService} from "@app/_services/option.service";
 
 @Component({
   selector: 'app-question-edit',
@@ -17,8 +19,8 @@ export class QuestionEditComponent implements OnInit {
     question: Question = new Question();
     sub: Subscription;
 
-    constructor(private route: ActivatedRoute, private questionService: QuestionService, private toastr: ToastrService,
-                private location: Location) { }
+    constructor(private route: ActivatedRoute, private questionService: QuestionService, private pollService: PollService,
+                private toastr: ToastrService, private optionService: OptionService, private location: Location) { }
 
     ngOnInit(): any {
       this.sub = this.route.params.subscribe(params => {
@@ -26,8 +28,11 @@ export class QuestionEditComponent implements OnInit {
           const id = params.id;
           if (!isNaN(id)) {
             this.loadData(id);
-          } else {
+          }else{
             this.question = new Question();
+            this.pollService.get(Number(params.pollId)).subscribe(poll => {
+              this.question.poll = poll;
+            });
           }
         }
       });
@@ -50,5 +55,11 @@ export class QuestionEditComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  delete(id): any {
+    this.optionService.delete(id).subscribe(data => {
+      this.loadData(this.question.id);
+    });
   }
 }

@@ -6,6 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 import {OptionService} from '../../_services/option.service';
 import {Option} from '../../_models/option';
 import {Location} from '@angular/common';
+import {QuestionService} from "@app/_services/question.service";
 
 @Component({
   selector: 'app-option-edit',
@@ -17,8 +18,8 @@ export class OptionEditComponent implements OnInit {
     option: Option = new Option();
     sub: Subscription;
 
-    constructor(private route: ActivatedRoute, private optionService: OptionService, private toastr: ToastrService,
-                private location: Location) { }
+    constructor(private route: ActivatedRoute, private optionService: OptionService, private questionService: QuestionService,
+                private toastr: ToastrService, private location: Location) { }
 
     ngOnInit(): any {
       this.sub = this.route.params.subscribe(params => {
@@ -28,6 +29,9 @@ export class OptionEditComponent implements OnInit {
             this.loadData(id);
           } else {
             this.option = new Option();
+            this.questionService.get(Number(params.questionId)).subscribe(question => {
+              this.option.question = question;
+            });
           }
         }
       });

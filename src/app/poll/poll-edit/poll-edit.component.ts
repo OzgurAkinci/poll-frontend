@@ -6,6 +6,7 @@ import {Poll} from '@app/_models/poll';
 import {PollService} from '@app/_services/poll.service';
 import {ToastrService} from 'ngx-toastr';
 import {Location} from '@angular/common';
+import {QuestionService} from "@app/_services/question.service";
 
 @Component({
   selector: 'app-poll-edit',
@@ -18,7 +19,7 @@ export class PollEditComponent implements OnInit {
     sub: Subscription;
 
     constructor(private route: ActivatedRoute, private pollService: PollService, private toastr: ToastrService,
-                private location: Location) { }
+                private location: Location, private questionService: QuestionService) { }
 
     ngOnInit(): any {
       this.sub = this.route.params.subscribe(params => {
@@ -39,16 +40,22 @@ export class PollEditComponent implements OnInit {
       });
     }
 
-  save(): any {
-    this.pollService.save(this.poll).subscribe(data => {
-      this.poll = data;
-      this.toastr.success('Successfully Saved');
-    }, e => {
-      this.toastr.error('Error: ' + JSON.stringify(e.error));
-    });
-  }
+    save(): any {
+        this.pollService.save(this.poll).subscribe(data => {
+          this.poll = data;
+          this.toastr.success('Successfully Saved');
+        }, e => {
+          this.toastr.error('Error: ' + JSON.stringify(e.error));
+        });
+    }
 
-  goBack(): void {
-    this.location.back();
-  }
+    goBack(): void {
+        this.location.back();
+    }
+
+    delete(id): any {
+        this.questionService.delete(id).subscribe(data => {
+            this.loadData(this.poll.id);
+        });
+    }
 }

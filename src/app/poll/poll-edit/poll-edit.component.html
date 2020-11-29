@@ -3,7 +3,7 @@
       Poll
       <div class="btn-toolbar float-right">
         <button class="btn btn-info" (click)="goBack()">Back</button> &nbsp;
-        <button class="btn btn-info" *ngIf="poll.id" routerLink="/question-edit/new">New Question</button>
+        <button class="btn btn-info" *ngIf="poll.id" routerLink="/question-edit/{{poll.id}}/new">New Question</button>
       </div>
     </h4>
     <div ngForm class="card-body">
@@ -33,12 +33,8 @@
             <td>
               {{ question.questionTitle }}
             </td>
-            <td>
-              <button class="btn btn-sm btn-primary" routerLink="/question-edit/{{question.id}}">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-info">View</button>
-            </td>
+            <td><button class="btn btn-sm btn-primary" routerLink="/question-edit/{{poll.id}}/{{question.id}}">Edit</button></td>
+            <td><button class="btn btn-sm btn-danger" (click)="delete(question.id)">Delete</button></td>
           </tr>
           </tbody>
         </table>

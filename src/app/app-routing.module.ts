@@ -37,13 +37,13 @@ const routes: Routes = [
       data: { roles: [RoleEnum.ADMIN] }
     },
     {
-      path: 'question-edit/:id',
+      path: 'question-edit/:pollId/:id',
       component: QuestionEditComponent,
       canActivate: [AuthGuard],
       data: { roles: [RoleEnum.ADMIN] }
     },
     {
-      path: 'option-edit/:id',
+      path: 'option-edit/:questionId/:id',
       component: OptionEditComponent,
       canActivate: [AuthGuard],
       data: { roles: [RoleEnum.ADMIN] }
