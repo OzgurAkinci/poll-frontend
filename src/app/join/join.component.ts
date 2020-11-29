@@ -54,6 +54,9 @@ export class JoinComponent implements OnInit {
     save(): void {
         this.joinService.save(this.joinResultQuestions).subscribe(data => {
           this.joinResultQuestions = data;
+          this.toastr.success('Successfully Saved');
+        }, e => {
+          this.toastr.error('Error: ' + JSON.stringify(e.error));
         });
     }
 }

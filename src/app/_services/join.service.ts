@@ -15,6 +15,6 @@ export class JoinService {
     }
 
     save(joinResultQuestion: JoinResultQuestion[]): Observable<JoinResultQuestion[]> {
-      return this.http.post<JoinResultQuestion[]>(environment.apiUrl + '/join/save/', joinResultQuestion);
+      return this.http.post<JoinResultQuestion[]>(environment.apiUrl + '/join/save', joinResultQuestion);
     }
 }
