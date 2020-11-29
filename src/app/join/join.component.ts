@@ -47,13 +47,8 @@ export class JoinComponent implements OnInit {
     }
 
     radioChecked(id, i): any{
-      /*this.joinResultQuestions.forEach(item => {
-        if (item.questionId !== id){
-          item.selected = false;
-        }else{
-          item.selected = true;
-        }
-      });*/
+      const d =  this.joinResultQuestions[i - 1].options.filter(x => x.optionId === id)[0];
+      d.selected = !d.selected;
     }
 
     save(): void {

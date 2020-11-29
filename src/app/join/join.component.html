@@ -15,7 +15,7 @@
           <div class="col-md-12">
 
             <div *ngFor='let item of joinResultQuestion.options;let i = index'>
-              <input type="{{joinResultQuestion.questionType === 0 ? 'radio' : 'checkbox'}}" [checked]="item.selected" (change)='radioChecked(item.optionId,i)' >
+              <input type="{{joinResultQuestion.questionType === 0 ? 'radio' : 'checkbox'}}" name="select" [checked]="item.selected" (change)='radioChecked(item.optionId,i)' >
               {{item.optionTitle}}
             </div>
 
