@@ -6,7 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 import {OptionService} from '../../_services/option.service';
 import {Option} from '../../_models/option';
 import {Location} from '@angular/common';
-import {QuestionService} from "@app/_services/question.service";
+import {QuestionService} from '@app/_services/question.service';
 
 @Component({
   selector: 'app-option-edit',

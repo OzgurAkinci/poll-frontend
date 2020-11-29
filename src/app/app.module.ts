@@ -18,6 +18,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {QuestionEditComponent} from '@app/question/question-edit/question-edit.component';
 import {OptionEditComponent} from '@app/option/option-edit/option-edit.component';
+import {JoinComponent} from '@app/join/join.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -36,6 +37,7 @@ import {OptionEditComponent} from '@app/option/option-edit/option-edit.component
         QuestionEditComponent,
         OptionEditComponent,
         UserListComponent,
+        JoinComponent,
         LoginComponent
     ],
     providers: [

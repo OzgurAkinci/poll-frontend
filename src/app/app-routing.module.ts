@@ -8,8 +8,9 @@ import { AuthGuard } from './_helpers';
 import { RoleEnum } from './_models';
 import {PollEditComponent} from '@app/poll/poll-edit/poll-edit.component';
 import {PollListComponent} from '@app/poll/poll-list.component';
-import {QuestionEditComponent} from "@app/question/question-edit/question-edit.component";
-import {OptionEditComponent} from "@app/option/option-edit/option-edit.component";
+import {QuestionEditComponent} from '@app/question/question-edit/question-edit.component';
+import {OptionEditComponent} from '@app/option/option-edit/option-edit.component';
+import {JoinComponent} from '@app/join/join.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,12 @@ const routes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         data: { roles: [RoleEnum.END, RoleEnum.ADMIN] }
+    },
+    {
+      path: 'join/:id',
+      component: JoinComponent,
+      canActivate: [AuthGuard],
+      data: { roles: [RoleEnum.END, RoleEnum.ADMIN] }
     },
     {
         path: 'users',

@@ -1,0 +1,37 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Reply freely..
+      <div class="btn-toolbar float-right">
+        <button class="btn btn-info float-right" (click)="save()">Save</button> &nbsp;
+        <button class="btn btn-info float-right" (click)="goBack()">Back</button>
+      </div>
+    </h4>
+  <div ngForm class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <div *ngFor="let question of poll.questions; index as i" class="row">
+          <div class="col-md-12">
+              <p>{{(i+1) + '.' + question.questionTitle}}</p>
+          </div>
+          <div class="col-md-12">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">Option 1
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">Option 2
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optradio">Option 3
+              </label>
+            </div>
+          </div>
+          <div class="hr-sect">good luck</div>
+        </div>
+  </div>
+</div>
+
+
