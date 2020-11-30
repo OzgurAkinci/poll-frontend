@@ -1,10 +1,8 @@
 ﻿<div class="card mt-4">
-    <h4 class="card-header">Home</h4>
+  <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+    <h4 class="card-header">Hi {{user?.name}}, below are the roles you are.</h4>
     <div class="card-body">
-          <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-          <ul *ngIf="user">
-              <li>{{user?.name}} {{user?.surname}}, Roles: {{user?.roles | json}}</li>
-          </ul>
+          <a *ngFor="let role of user?.roles" href="#" class="btn btn-primary badge-margin">{{role.roleName}}</a>
     </div>
 </div>
 

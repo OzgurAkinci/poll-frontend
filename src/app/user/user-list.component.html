@@ -19,7 +19,9 @@
           <td>{{ user.name }}</td>
           <td>{{ user.surname }}</td>
           <td>{{ user.username }}</td>
-          <td>{{ user.roles | json }}</td>
+          <td>
+            <a *ngFor="let role of user?.roles" href="#" class="btn btn-primary badge-margin">{{role.roleName}}</a>
+          </td>
         </tr>
         </tbody>
       </table>
