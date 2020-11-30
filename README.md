@@ -9,3 +9,9 @@ docker build . --tag poll-frontend
 ```bash	
 docker run -d --name poll-frontend-container -p 81:80 poll-frontend
 ```
+
+### Run
+```bash	
+http://localhost:81/
+```
+
