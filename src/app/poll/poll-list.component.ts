@@ -3,7 +3,6 @@ import { first } from 'rxjs/operators';
 
 import {PollService} from '../_services/poll.service';
 import {Poll} from '../_models/poll';
-import {RoleEnum} from "@app/_models";
 
 @Component({
   selector: 'app-poll-list',
