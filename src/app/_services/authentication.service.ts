@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -19,13 +19,13 @@ const HTTP_OPTIONS = {
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private userSubject: BehaviorSubject<User>;
     private authSubject: BehaviorSubject<any>;
     public auth: Observable<any>;
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private route: ActivatedRoute,
     ) {
         this.authSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('auth')));
         this.auth = this.authSubject.asObservable();
@@ -43,9 +43,16 @@ export class AuthenticationService {
 
       return this.http.post<any>(`${environment.apiUrl}/oauth/token`, body, HTTP_OPTIONS)
             .pipe(map(auth => {
-                localStorage.setItem('auth', JSON.stringify(auth));
-                this.authSubject.next(auth);
-                return auth;
+                const currentUser = auth;
+                localStorage.setItem('auth', JSON.stringify(currentUser));
+                this.authSubject.next(currentUser);
+                this.getCurrentUser().subscribe(user => {
+                  currentUser.user = user;
+                  localStorage.setItem('auth', JSON.stringify(currentUser));
+                  this.authSubject.next(currentUser);
+                  const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+                  this.router.navigateByUrl(returnUrl);
+                });
             }));
     }
 
