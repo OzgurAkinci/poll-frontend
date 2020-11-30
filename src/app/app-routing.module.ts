@@ -11,6 +11,7 @@ import {PollListComponent} from '@app/poll/poll-list.component';
 import {QuestionEditComponent} from '@app/question/question-edit/question-edit.component';
 import {OptionEditComponent} from '@app/option/option-edit/option-edit.component';
 import {JoinComponent} from '@app/join/join.component';
+import {ResultComponent} from "@app/result/result.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,12 @@ const routes: Routes = [
     {
       path: 'join/:id',
       component: JoinComponent,
+      canActivate: [AuthGuard],
+      data: { roles: [RoleEnum.END, RoleEnum.ADMIN] }
+    },
+    {
+      path: 'result/:id',
+      component: ResultComponent,
       canActivate: [AuthGuard],
       data: { roles: [RoleEnum.END, RoleEnum.ADMIN] }
     },

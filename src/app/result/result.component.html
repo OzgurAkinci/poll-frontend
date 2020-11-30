@@ -1,0 +1,30 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">
+      Result
+      <button class="btn btn-info float-right" (click)="goBack()">Back</button>
+    </h4>
+  <div class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+    <div *ngFor="let result of pollResult; index as i">
+      <div class="alert alert-info" role="alert">
+        {{result.question}}
+      </div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col" width="50">Option No</th>
+          <th scope="col">Option</th>
+          <th scope="col" width="30">Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let response of result.response; index as i">
+          <td>{{ response.optionNo }}</td>
+          <td>{{ response.option }}</td>
+          <td>{{ response.responseCount }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</div>

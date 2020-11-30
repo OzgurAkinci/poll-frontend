@@ -13,6 +13,7 @@
             <th scope="col" width="30"></th>
             <th scope="col" width="30"></th>
             <th scope="col" width="30"></th>
+            <th scope="col" width="30"></th>
           </tr>
           </thead>
           <tbody>
@@ -23,6 +24,7 @@
             </td>
 
             <td><button class="btn btn-sm btn-info" routerLink="/join/{{poll.id}}">Join</button></td>
+            <td><button class="btn btn-sm btn-info" routerLink="/result/{{poll.id}}">Analysis</button></td>
             <td><button class="btn btn-sm btn-primary" routerLink="/poll-edit/{{poll.id}}">Edit</button></td>
             <td><button class="btn btn-sm btn-danger" (click)="delete(poll.id)">Delete</button></td>
 

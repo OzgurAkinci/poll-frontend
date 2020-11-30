@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {QuestionEditComponent} from '@app/question/question-edit/question-edit.component';
 import {OptionEditComponent} from '@app/option/option-edit/option-edit.component';
 import {JoinComponent} from '@app/join/join.component';
+import {ResultComponent} from "@app/result/result.component";
 @NgModule({
     imports: [
         BrowserModule,
@@ -37,6 +38,7 @@ import {JoinComponent} from '@app/join/join.component';
         QuestionEditComponent,
         OptionEditComponent,
         UserListComponent,
+        ResultComponent,
         JoinComponent,
         LoginComponent
     ],
