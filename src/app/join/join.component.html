@@ -13,29 +13,10 @@
               <p>{{(i+1) + '.' + joinResultQuestion.questionTitle}}</p>
           </div>
           <div class="col-md-12">
-
             <div *ngFor='let item of joinResultQuestion.options;let i = index'>
-              <input type="{{joinResultQuestion.questionType === 0 ? 'radio' : 'checkbox'}}" name="select" [checked]="item.selected" (change)='radioChecked(item.optionId,i)' >
+              <input type="{{joinResultQuestion.questionType === 0 ? 'radio' : 'checkbox'}}" name="select" [checked]="item.selected" (change)='radioChecked(item.optionId,joinResultQuestion.questionId)' >
               {{item.optionTitle}}
             </div>
-
-
-           <!--<div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 1
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 2
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Option 3
-              </label>
-            </div>
-          </div>-->
           <div class="hr-sect">good luck <mdb-icon far icon="address-book"></mdb-icon></div>
         </div>
   </div>

@@ -51,9 +51,21 @@ export class JoinComponent implements OnInit {
     this.location.back();
     }
 
-    radioChecked(id, i): any{
-      const d =  this.joinResultQuestions[i - 1].options.filter(x => x.optionId === id)[0];
-      d.selected = !d.selected;
+    radioChecked(id, questionId): any{
+      const question = this.joinResultQuestions.find(q => q.questionId === questionId);
+      const option  = question.options.filter(x => x.optionId === id)[0];
+      if (question.questionType === 0){ // Single choice
+        question.options.forEach(op => {
+          if (op.optionId === id) {
+            op.selected = true;
+          }
+          else {
+            op.selected = false;
+          }
+        });
+      }else { // Multiple choice
+        option.selected = !option.selected;
+      }
     }
 
     save(): void {
