@@ -2,17 +2,17 @@
 
 import {AuthenticationService, UserService} from './_services';
 import {User, RoleEnum} from './_models';
+import {Auth} from '@app/_models/auth';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
-    user: User;
-
-    constructor(private authenticationService: AuthenticationService, private userService: UserService) {
-        this.userService.getCurrentUser().subscribe(x => this.user = x);
-    }
-
-    get isAdmin(): any {
-        return this.user && (this.user.roles.findIndex(d => d.roleName === RoleEnum.ADMIN) !== -1);
+    auth: Auth;
+    isAdmin = false;
+    constructor(private authenticationService: AuthenticationService) {
+      this.authenticationService.auth.subscribe((d) => {
+          this.auth = d;
+          this.isAdmin = this.auth && this.auth.roles && (d.roles.findIndex(r => r.roleName === RoleEnum.ADMIN) !== -1);
+      });
     }
 
     logout(): any {

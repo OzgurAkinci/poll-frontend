@@ -47,7 +47,12 @@ export class AuthenticationService {
                 localStorage.setItem('auth', JSON.stringify(currentUser));
                 this.authSubject.next(currentUser);
                 this.getCurrentUser().subscribe(user => {
-                  currentUser.user = user;
+                  currentUser.id = user.id;
+                  currentUser.name = user.name;
+                  currentUser.surname = user.surname;
+                  currentUser.username = user.username;
+                  currentUser.password = user.password;
+                  currentUser.roles = user.roles;
                   localStorage.setItem('auth', JSON.stringify(currentUser));
                   this.authSubject.next(currentUser);
                   const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
