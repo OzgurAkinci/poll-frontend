@@ -1,7 +1,7 @@
 ﻿<div class="card mt-4">
     <h4 class="card-header">
       Polls
-      <button class="btn btn-info float-right" routerLink="/poll-edit/new">New Poll</button>
+      <button class="btn btn-info float-right" *ngIf="isAdmin" routerLink="/poll-edit/new">New Poll</button>
     </h4>
     <div class="card-body">
         <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
